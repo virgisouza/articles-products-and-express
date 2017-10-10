@@ -1,35 +1,36 @@
 let express = require('express');
 let router = express.Router();
 const Products = require('../db/products');
-
-
-let productsArr = [];
+const exphbs = require('express-handlebars');
 
 router.get('/', (req,res) => {
-  console.log('rootsy');
-  res.json({'products' : productsArr});
+  res.render('productsHome', (err, hbs) => {
+    res.send(hbs);
+  });
 });
 
 router.get('/:id', (req,res) => {
-  res.send(req.params.id);
-  console.log({'products' : productsArr});
+  res.render()
+
 });
 
-router.post('/:id', (req,res) => {
-  console.log(productsArr.length);
-
+router.post('/', (req,res) => {
   //req = { name: String, price: String, inventory: String }
 
-  req.body.name = req.params.id + "";
-  req.body.price = '0';
-  req.body.inventory = '3';
-
-  productsArr.push(req.body);
-
-  console.log(productsArr);
-
-  res.json(req.body);
-  console.log({'success' : true});
+  if(successful) {
+    Products.setId(req.body);
+    res.render('productsHome', (err, hbs) => {
+      res.send(hbs);
+      //add success partial
+      console.log({'success' : true});
+    });
+   }else{
+    res.render('postProducts', (err, hbs) => {
+      res.send(hbs);
+        //   with 404 error handlebar
+        console.log({'success' : false});
+    });
+   }
 });
 
 

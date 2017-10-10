@@ -1,16 +1,28 @@
 class Products {
-  constructor(id, name, price, inventory) {
+  constructor() {
     //saving data here
     //{id: Number, name: String, price: Number, inventory: Number}
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.inventory = inventory;
+    this._productsArr = [];
+    this._sku = 0;
   }
 
-  getMethod() {
-    //does some method
+  getProducts() {
+    return this._productsArr;
   }
+
+  setId(product) {
+    product.id = 'p' + this._sku++;
+    this._productsArr.push(product);
+    console.log(this._productsArr);
+  }
+
+  addToArr() {
+    //pushes complete object (with id) to _productsArr
+  }
+
+
+
+
 };
 
-module.exports = Products;
+module.exports = new Products();
