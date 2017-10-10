@@ -16,8 +16,9 @@ router.get('/:id', (req,res) => {
 
 router.post('/', (req,res) => {
   //req = { name: String, price: String, inventory: String }
+console.log(req.body);
 
-  if(successful) {
+  if(req.body === req.body) {
     Products.setId(req.body);
     res.render('productsHome', (err, hbs) => {
       res.send(hbs);
