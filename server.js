@@ -1,4 +1,6 @@
 const express = require('express');
+const bodyparser = require('body-parser');
+// const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
 const app = express();
 app.engine('.hbs', exphbs({
@@ -7,20 +9,15 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 const PORT = process.env.PORT || 3000;
-
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(bodyparser.urlencoded({extended : true}));
 
 
 app.get('/', (req, res) => {
   res.send('Welcome to the jungle');
 });
 
-app.get('/articles/:id', (req,res) => {
-  console.log(req.params.id);
-});
-
-app.get('/prodicts/:id', (req,res) => {
-  console.log(req.params.id);
-});
 
 let articles = require('./routes/articles');
 app.use('/articles', articles);
