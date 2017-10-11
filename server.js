@@ -15,7 +15,7 @@ app.use(bodyparser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
-  res.render('home', (err, hbs) => {
+  res.render('./layouts/main', (err, hbs) => {
     res.send(hbs);
   });
 });

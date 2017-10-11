@@ -1,6 +1,5 @@
 class Products {
   constructor() {
-    //saving data here
     //{id: Number, name: String, price: Number, inventory: Number}
     this._productsArr = [];
     this._sku = 1;
@@ -30,13 +29,17 @@ class Products {
     return result;
   }
 
-  editProduct(product) {
-    let foundProduct = this.getProductById(product);
-    console.log(foundProduct);
-    product.price = product.price * 1;
-    product.inventory = parseInt(product.inventory);
-    console.log(this.getProductById(product));
-
+  editProduct(product, obj) {
+    let foundObj = this.getProductById(product);
+    let grabObj = this._productsArr.indexOf(foundObj);
+    this._productsArr.splice(grabObj, 1);
+    let matchId = foundObj.id;
+    foundObj = obj;
+    obj.id = matchId;
+    obj.price = obj.price * 1;
+    obj.inventory = parseInt(obj.inventory);
+    this._productsArr.push(obj);
+    console.log(obj);
   }
 
   deleteProduct(product) {

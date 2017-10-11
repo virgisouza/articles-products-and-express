@@ -42,8 +42,7 @@ router.post('/new', (req,res) => {
 });
 
 router.put('/:id/edit', (req, res) => {
-  console.log(req.body);
-  Products.editProduct(req.params.id);
+  Products.editProduct(req.params.id, req.body);
   res.render('./productViews/edit', (err,hbs) => {
     res.send(hbs);
 
