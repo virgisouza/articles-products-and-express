@@ -19,16 +19,26 @@ class Products {
   }
 
   getProductById(product) {
-    console.log('getProductByID: ', product);
-    let finder = this._productsArr.indexof(product.id);
-    return this._productsArr.find(finder);
+    function search(nameKey, myArray){
+      for (var i=0; i < myArray.length; i++) {
+          if (myArray[i].name === nameKey) {
+              return myArray[i];
+            }
+          }
+        }
+    let result = search(product, this._productsArr);
+    return result;
   }
 
   editProduct(product) {
+    this.getProductById(product);
+    console.log(this.getProductById(product));
 
   }
 
   deleteProduct(product) {
+    this.getProductById(product);
+    console.log(this.getProductById(product));
 
   }
 

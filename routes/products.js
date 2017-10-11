@@ -16,24 +16,18 @@ router.get('/new', (req,res) => {
 });
 
 router.get('/:id', (req, res) => {
-  //call getProductById()
-  //call render product....
-  res.render('./productViews/productsPro', (err, hbs) => {
-    res.send(hbs);
-  });
+  res.render('./productViews/productsPro', {oneProduct : Products.getProductById(req.params.id)});
 });
 
-router.get('./products/:id/edit', (req, res) => {
+router.get('/:id/edit', (req, res) => {
   console.log(req.params.id);
-  res.render('editPro', (err, hbs) => {
+  res.render('./productViews/editPro', (err, hbs) => {
     res.send(hbs);
   });
 });
 
 router.post('/new', (req,res) => {
   //req = { name: String, price: String, inventory: String }
-console.log(req.body);
-
   if(req.body === req.body) {
     Products.setId(req.body);
     res.render('./productViews/newPro', (err, hbs) => {
