@@ -8,8 +8,10 @@
   Inventory : <input type="text" name= 'inventory'><br>
   <input type="submit" value= 'Edit'><br>
 </form>
+<form method="POST" action="/products/{{editProduct.name}}/edit?_method=DELETE">
+  <button type="submit">Delete</button>
+</form>
 
-  <input type="submit" action="/products/{{editProduct.name}}/edit?_method=DELETE" value='Delete'>
 
 
 

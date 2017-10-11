@@ -43,8 +43,10 @@ class Products {
   }
 
   deleteProduct(product) {
-    this.getProductById(product);
-    console.log(this.getProductById(product));
+    let foundObj = this.getProductById(product);
+    let grabObj = this._productsArr.indexOf(foundObj);
+    this._productsArr.splice(grabObj, 1);
+    console.log(this._productsArr);
 
   }
 

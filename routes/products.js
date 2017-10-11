@@ -10,9 +10,7 @@ router.get('/', (req,res) => {
 });
 
 router.get('/new', (req,res) => {
-  res.render('./productViews/newPro', (err, hbs) => {
-    res.send(hbs);
-  });
+  res.render('./productViews/newPro');
 });
 
 router.get('/:id', (req, res) => {
@@ -42,17 +40,15 @@ router.post('/new', (req,res) => {
 });
 
 router.put('/:id/edit', (req, res) => {
+  //functionality works. need to push item back into array at same position so array stays organized in numeric order
   Products.editProduct(req.params.id, req.body);
-  res.render('./productViews/edit', (err,hbs) => {
-    res.send(hbs);
-
-    console.log({'success': 'edit complete'})
-  });
+  res.render('./productViews/editPro');
+    console.log({'success': 'edit complete'});
 });
 
 router.delete('/:id/edit', (req, res) => {
-  //remove item from array
-  //call deleteProduct()
+  Products.deleteProduct(req.params.id);
+  res.render('./productViews/editPro');
 });
 
 
