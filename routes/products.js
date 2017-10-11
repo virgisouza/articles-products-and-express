@@ -2,18 +2,15 @@ let express = require('express');
 let router = express.Router();
 const Products = require('../db/products');
 const exphbs = require('express-handlebars');
+// const products = new Products();
 
 
 router.get('/', (req,res) => {
-  Products.getAllProducts();
-  res.render('indexPro', (err, hbs) => {
-    res.send(hbs);
-  });
+  res.render('./productViews/indexPro', {products : Products.getAllProducts()});
 });
 
 router.get('/new', (req,res) => {
-  console.log('new page GET')
-  res.render('newPro', (err, hbs) => {
+  res.render('./productViews/newPro', (err, hbs) => {
     res.send(hbs);
   });
 });
@@ -21,7 +18,7 @@ router.get('/new', (req,res) => {
 router.get('/:id', (req, res) => {
   //call getProductById()
   //call render product....
-  res.render('productsPro', (err, hbs) => {
+  res.render('./productViews/productsPro', (err, hbs) => {
     res.send(hbs);
   });
 });
@@ -39,14 +36,14 @@ console.log(req.body);
 
   if(req.body === req.body) {
     Products.setId(req.body);
-    res.render('newPro', (err, hbs) => {
+    res.render('./productViews/newPro', (err, hbs) => {
       res.send(hbs);
       //add success partial
       console.log({'success' : true});
     });
    }else{
-    res.render('newPro', (err, hbs) => {
-      res.send(hbs);
+    res.render('./productViews/newPro', (err, hbs) => {
+      res.status(404).send(hbs);
         //   with 404 error partial handlebar
         console.log({'success' : false});
     });
@@ -56,7 +53,7 @@ console.log(req.body);
 router.put('/:id/edit', (req, res) => {
   //call Products.getProductById()
   // call editProduct
-  res.render('edit', (err,hbs) => {
+  res.render('./productViews/edit', (err,hbs) => {
     res.send(hbs);
   });
 });

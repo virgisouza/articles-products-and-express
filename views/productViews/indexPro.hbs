@@ -1,0 +1,23 @@
+{{!-- /products --}}
+
+<h1>Display All Products </h1>
+{{!-- handlebar comments, not visible in the inspector --}}
+<div class="collection">
+  <ul class='product-list'>
+    {{#each products}}
+      <br>
+      <li>Id# : {{id}}</li>
+      <li>Name : {{name}}</li>
+      <li>Price : {{price}}</li>
+      <li>Inventory : {{inventory}}</li>
+      <br>
+    {{/each}}
+  </ul>
+</div>
+
+
+<!--this comment is visible in the inspector -->
+<br>
+<br>
+
+{{>footer}}
