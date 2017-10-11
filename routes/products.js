@@ -1,8 +1,6 @@
 let express = require('express');
 let router = express.Router();
 const Products = require('../db/products');
-const exphbs = require('express-handlebars');
-const app = express();
 
 
 router.get('/', (req,res) => {
@@ -23,27 +21,18 @@ router.get('/:id/edit', (req, res) => {
 
 router.post('/new', (req,res) => {
   //req = { name: String, price: String, inventory: String }
-  if(req.body === req.body) {
-    Products.setId(req.body);
-    res.render('./productViews/newPro', (err, hbs) => {
-      res.send(hbs);
-      //add success partial
-      console.log({'success' : true});
-    });
-   }else{
-    res.render('./productViews/newPro', (err, hbs) => {
-      res.status(404).send(hbs);
-        //   with 404 error partial handlebar
-        console.log({'success' : false});
-    });
-   }
+  //if (validation) {do this redirect}else{do this redirect}
+  Products.setId(req.body);
+  res.render('./productViews/newPro');
+  console.log({'success' : true});
 });
 
 router.put('/:id/edit', (req, res) => {
   //functionality works. need to push item back into array at same position so array stays organized in numeric order
+  //if (validation) {do this redirect}else{do this redirect}
+
   Products.editProduct(req.params.id, req.body);
   res.render('./productViews/editPro');
-    console.log({'success': 'edit complete'});
 });
 
 router.delete('/:id/edit', (req, res) => {

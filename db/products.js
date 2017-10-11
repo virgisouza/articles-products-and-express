@@ -30,6 +30,7 @@ class Products {
   }
 
   editProduct(product, obj) {
+    //create validation true / false
     let foundObj = this.getProductById(product);
     let grabObj = this._productsArr.indexOf(foundObj);
     this._productsArr.splice(grabObj, 1);
@@ -40,6 +41,7 @@ class Products {
     obj.inventory = parseInt(obj.inventory);
     this._productsArr.push(obj);
     console.log(obj);
+    console.log(this._productsArr);
   }
 
   deleteProduct(product) {
