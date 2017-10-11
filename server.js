@@ -8,16 +8,16 @@ app.engine('.hbs', exphbs({
   extname : '.hbs'
 }));
 app.set('view engine', '.hbs');
-const PORT = process.env.PORT || 3000;
+app.use(bodyparser.json());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(bodyparser.urlencoded({extended : true}));
 
-
 app.get('/', (req, res) => {
-  res.send('Welcome to the jungle');
+  res.render('home', (err, hbs) => {
+    res.send(hbs);
+  });
 });
-
 
 let articles = require('./routes/articles');
 app.use('/articles', articles);
@@ -25,6 +25,5 @@ app.use('/articles', articles);
 let products = require('./routes/products');
 app.use('/products', products);
 
-app.listen(3000, () => {
-  console.log(`Server listening on port : ${PORT}`);
-});
+
+module.exports = app;
