@@ -31,7 +31,10 @@ class Products {
   }
 
   editProduct(product) {
-    this.getProductById(product);
+    let foundProduct = this.getProductById(product);
+    console.log(foundProduct);
+    product.price = product.price * 1;
+    product.inventory = parseInt(product.inventory);
     console.log(this.getProductById(product));
 
   }

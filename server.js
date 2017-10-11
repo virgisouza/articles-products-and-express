@@ -1,6 +1,6 @@
 const express = require('express');
+let methodOverride = require('method-override');
 const bodyparser = require('body-parser');
-// const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
 const app = express();
 app.engine('.hbs', exphbs({
@@ -12,6 +12,7 @@ app.use(bodyparser.json());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(bodyparser.urlencoded({extended : true}));
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
   res.render('home', (err, hbs) => {

@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 const Products = require('../db/products');
 const exphbs = require('express-handlebars');
-// const products = new Products();
+const app = express();
 
 
 router.get('/', (req,res) => {
@@ -20,10 +20,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/:id/edit', (req, res) => {
-  console.log(req.params.id);
-  res.render('./productViews/editPro', (err, hbs) => {
-    res.send(hbs);
-  });
+  res.render('./productViews/editPro', {editProduct : Products.getProductById(req.params.id)});
 });
 
 router.post('/new', (req,res) => {
@@ -45,10 +42,12 @@ router.post('/new', (req,res) => {
 });
 
 router.put('/:id/edit', (req, res) => {
-  //call Products.getProductById()
-  // call editProduct
+  console.log(req.body);
+  Products.editProduct(req.params.id);
   res.render('./productViews/edit', (err,hbs) => {
     res.send(hbs);
+
+    console.log({'success': 'edit complete'})
   });
 });
 
