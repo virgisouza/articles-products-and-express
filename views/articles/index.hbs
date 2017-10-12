@@ -9,11 +9,13 @@
       <li>Body : {{body}}</li>
       <li>Author : {{author}}</li>
       <li>URL Title : {{urlTitle}}</li>
+      <a href="http://localhost:3000/articles/{{this.title}}/edit">Edit Item</a>
       <br>
     {{/each}}
   </ul>
 </div>
 
-<a href="http://localhost:3000/articles/new">Create New Article</a>
+<a href="http://localhost:3000/articles/new">Create New Article</a><br>
+<a href="http://localhost:3000/">Home</a>
 <br>
 {{>footer}}
