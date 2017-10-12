@@ -10,11 +10,15 @@ class Products {
   }
 
   setId(product) {
-    product.price = product.price * 1;
-    product.inventory = parseInt(product.inventory);
-    product.id = this._sku++;
-    this._productsArr.push(product);
-    console.log(this._productsArr);
+    if(product) {
+      product.price = product.price * 1;
+      product.inventory = parseInt(product.inventory);
+      product.id = this._sku++;
+      this._productsArr.push(product);
+      return true;
+    }else{
+      return false;
+    }
   }
 
   getProductById(product) {
@@ -30,26 +34,31 @@ class Products {
   }
 
   editProduct(product, obj) {
-    //create validation true / false
-    let foundObj = this.getProductById(product);
-    let grabObj = this._productsArr.indexOf(foundObj);
-    this._productsArr.splice(grabObj, 1);
-    let matchId = foundObj.id;
-    foundObj = obj;
-    obj.id = matchId;
-    obj.price = obj.price * 1;
-    obj.inventory = parseInt(obj.inventory);
-    this._productsArr.push(obj);
-    console.log(obj);
-    console.log(this._productsArr);
+    if(product && obj) {
+      let foundObj = this.getProductById(product);
+      let grabObj = this._productsArr.indexOf(foundObj);
+      this._productsArr.splice(grabObj, 1);
+      let matchId = foundObj.id;
+      foundObj = obj;
+      obj.id = matchId;
+      obj.price = obj.price * 1;
+      obj.inventory = parseInt(obj.inventory);
+      this._productsArr.push(obj);
+      return true;
+    }else{
+      return false;
+    }
   }
 
   deleteProduct(product) {
-    let foundObj = this.getProductById(product);
-    let grabObj = this._productsArr.indexOf(foundObj);
-    this._productsArr.splice(grabObj, 1);
-    console.log(this._productsArr);
-
+    if(product) {
+      let foundObj = this.getProductById(product);
+      let grabObj = this._productsArr.indexOf(foundObj);
+      this._productsArr.splice(grabObj, 1);
+      return true;
+    }else{
+      return false;
+    }
   }
 
 

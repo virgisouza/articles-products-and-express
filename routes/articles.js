@@ -21,21 +21,38 @@ router.get('/:title/edit', (req, res) => {
 });
 
 router.post('/new', (req,res) => {
-  //if (validation) {do this redirect}else{do this redirect}
   Articles.setUrlTitle(req.body);
-  res.render('./articles/new');
-  console.log({'success' : true});
+  if(req.body) {
+    res.redirect('./');
+    console.log({'success' : true});
+  }else{
+    res.redirect('back');
+    console.log({'success' : false});
+  }
+
 });
 
 router.put('/:title/edit', (req, res) => {
-  //if (validation) {do this redirect}else{do this redirect}
   Articles.editArticle(req.params.title, req.body);
-  res.render('./articles/edit');
+  if(req.params.title && req.body) {
+    res.redirect('./');
+    console.log({'success' : true});
+  }else{
+    res.redirect('back');
+    console.log({'success' : false});
+  }
+
 });
 
 router.delete('/:title/edit', (req, res) => {
   Articles.deleteArticle(req.params.title);
-  res.render('./articles/edit');
+  if(req.params.title) {
+    res.redirect('/articles');
+    console.log({'success' : true});
+  }else{
+    res.redirect('back');
+    console.log({'success' : false});
+  }
 });
 
 

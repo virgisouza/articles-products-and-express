@@ -20,24 +20,38 @@ router.get('/:id/edit', (req, res) => {
 });
 
 router.post('/new', (req,res) => {
-  //req = { name: String, price: String, inventory: String }
-  //if (validation) {do this redirect}else{do this redirect}
   Products.setId(req.body);
-  res.render('./productViews/newPro');
-  console.log({'success' : true});
+  if (req.body) {
+    res.redirect('./');
+    console.log({'success' : true});
+  }else{
+    res.redirect('back');
+    console.log({'success' : false});
+  }
+
+
 });
 
 router.put('/:id/edit', (req, res) => {
-  //functionality works. need to push item back into array at same position so array stays organized in numeric order
-  //if (validation) {do this redirect}else{do this redirect}
-
   Products.editProduct(req.params.id, req.body);
-  res.render('./productViews/editPro');
+  if(req.params.id && req.body){
+    res.redirect('./');
+    console.log({'success' : true});
+  }else{
+    res.redirect('back');
+    console.log({'success' : false});
+  }
 });
 
 router.delete('/:id/edit', (req, res) => {
   Products.deleteProduct(req.params.id);
-  res.render('./productViews/editPro');
+  if (req.params.id) {
+    res.redirect('./');
+    console.log({'success' : true});
+  }else{
+    res.redirect('back');
+    console.log({'success' : false});
+  }
 });
 
 
