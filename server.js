@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 let methodOverride = require('method-override');
 const bodyparser = require('body-parser');
 const exphbs = require('express-handlebars');
@@ -14,10 +15,12 @@ app.use(express.urlencoded());
 app.use(bodyparser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
+
+app.use(express.static('public'));
+
+
 app.get('/', (req, res) => {
-  res.render('./layouts/main', (err, hbs) => {
-    res.send(hbs);
-  });
+  res.render('./layouts/main');
 });
 
 let articles = require('./routes/articles');

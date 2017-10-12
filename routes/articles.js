@@ -29,7 +29,6 @@ router.post('/new', (req,res) => {
     res.redirect('back');
     console.log({'success' : false});
   }
-
 });
 
 router.put('/:title/edit', (req, res) => {

@@ -28,8 +28,6 @@ router.post('/new', (req,res) => {
     res.redirect('back');
     console.log({'success' : false});
   }
-
-
 });
 
 router.put('/:id/edit', (req, res) => {
