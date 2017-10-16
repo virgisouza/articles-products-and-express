@@ -20,6 +20,6 @@ CREATE TABLE articles (
 CREATE TABLE products (
   id serial PRIMARY KEY,
   name varchar(90) NOT NULL,
-  price float(2) NOT NULL,
+  price money NOT NULL,
   inventory int NOT NULL
 );
