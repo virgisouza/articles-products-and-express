@@ -22,11 +22,11 @@ app.get('/', (req, res) => {
   res.render('./layouts/main');
 });
 
-let articles = require('./routes/articles');
-app.use('/articles', articles);
+// let articles = require('./routes/articles');
+// app.use('/articles', articles);
 
-let products = require('./routes/products');
-app.use('/products', products);
+// let products = require('./routes/products');
+// app.use('/products', products);
 
 
 module.exports = app;
