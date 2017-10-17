@@ -5,11 +5,10 @@ let router = express.Router();
 const Articles = require('../models/articles');
 
 
-
 router.get('/', (req, res) => {
  return Articles.getAllArticles()
  .then((data) => {
-    console.log(data);
+    // console.log(data);
     res.render('./articles/index', {articles: data});
   })
   .catch((err) => {
@@ -23,7 +22,7 @@ router.get('/new', (req, res) => {
 
 router.get('/:title', (req,res) => {
   let title = req.params.title;
-  console.log(title);
+  // console.log(title);
 
   return Articles.getArticleByTitle(title)
   .then((data) => {
@@ -61,12 +60,13 @@ router.post('/new', (req, res) => {
 router.put('/:title/edit', (req,res)=> {
   let title = req.params.title;
   let body = req.body;
+
   return Articles.editArticle(title, body)
     .then((data) => {
-      res.redirect('/');
+      res.redirect('/articles');
     })
     .catch((err) => {
-      console.log(err);
+      console.log('put error: ', err);
       res.redirect('back');
     });
 });
@@ -76,7 +76,7 @@ router.delete('/:title/edit', (req, res) => {
   console.log(title);
   return Articles.deleteArticle(title)
     .then((data) => {
-      res.render('./articles/:title/edit', {editArticle: data});
+      res.redirect('/articles');
     })
     .catch((err)=> {
       console.log(err);

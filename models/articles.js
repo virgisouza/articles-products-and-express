@@ -35,9 +35,14 @@ class Articles {
     return db.one('SELECT * FROM articles WHERE title = $1', article);
   }
 
-  editArticle(article) {
-    return db.none('UPDATE articles SET title=$1, body=$2, author=$3 WHERE title=$1',
-      [title, body, author]);
+  editArticle(article, obj) {
+    let title = obj.title;
+    let body = obj.body;
+    let author = obj.author;
+    let urltitle = encodeURI(obj.title);
+
+    return db.none('UPDATE articles SET title=$1, body=$2, author=$3, urltitle=$4 WHERE title=$5',
+      [title, body, author, urltitle, article]);
   }
 
   deleteArticle(article) {
