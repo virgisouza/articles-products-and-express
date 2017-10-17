@@ -2,7 +2,7 @@
 
 let express = require('express');
 let router = express.Router();
-//const Products = require('path to database')
+const Products = require('../models/products');
 
 
-//module.exports = router;
+module.exports = router;

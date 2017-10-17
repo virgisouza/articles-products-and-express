@@ -1,9 +1,9 @@
 //jshint esversion: 6
 const express = require('express');
-const app = express();
 const methodOverride = require('method-override');
 const bodyparser = require('body-parser');
 const exphbs = require('express-handlebars');
+const app = express();
 app.engine('.hbs', exphbs({
   defaultlayout : 'main',
   extname : '.hbs'
@@ -22,11 +22,11 @@ app.get('/', (req, res) => {
   res.render('./layouts/main');
 });
 
-// let articles = require('./routes/articles');
-// app.use('/articles', articles);
+let articles = require('./routes/articles');
+app.use('/articles', articles);
 
-// let products = require('./routes/products');
-// app.use('/products', products);
+let products = require('./routes/products');
+app.use('/products', products);
 
 
 module.exports = app;

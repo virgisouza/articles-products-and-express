@@ -2,7 +2,9 @@
 
 let express = require('express');
 let router = express.Router();
-const Articles = require('../DB/articles_and_products');
+const Articles = require('../models/articles');
+
+
 
 router.get('/', (req, res) => {
   res.render('./articles', {articles : Articles.getAllArticles()});
@@ -22,7 +24,14 @@ router.get('/:title/edit', (req,res) => {
 });
 
 router.post('/new', (req, res) => {
-
+  Articles.setURLTitle(req.body);
+  if(req.body === req.body){
+    res.render('/');
+  }else{
+    res.redirect('back');
+  }
 });
+
+
 
 module.exports = router;
