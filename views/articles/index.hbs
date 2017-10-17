@@ -1,0 +1,18 @@
+{{!-- /articles --}}
+
+<h1>All Articles List</h1>
+
+<div class="collection">
+  <ul class="articles-list">
+    <br>
+    {{#each articles}}
+    <li>Title : {{title}}</li>
+    <li>Body : {{body}}</li>
+    <li>Author : {{author}}</li>
+    <li>URL Title : {{urlTitle}}</li>
+    {{/each}}
+  </ul>
+</div>
+
+<br>
+{{>footer}}
