@@ -7,7 +7,7 @@ const Articles = require('../models/articles');
 
 
 router.get('/', (req, res) => {
-  res.render('./articles', {articles : Articles.getAllArticles()});
+  res.render('./articles/index', {articles : Articles.getAllArticles()});
 });
 
 router.get('/new', (req, res) => {
@@ -24,12 +24,10 @@ router.get('/:title/edit', (req,res) => {
 });
 
 router.post('/new', (req, res) => {
-  Articles.setURLTitle(req.body);
-  if(req.body === req.body){
-    res.render('/');
-  }else{
-    res.redirect('back');
-  }
+  let data = req.body;
+  Articles.create(data);
+    return res.render('./articles/new');
+
 });
 
 

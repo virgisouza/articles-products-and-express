@@ -1,5 +1,4 @@
 //jshint esversion : 6
-
 const pgp = require('pg-promise')();
 const db = pgp('postgress://localhost:5432/articles_and_products_db');
 
@@ -9,37 +8,52 @@ class Articles {
   }
 
   getAllArticles() {
-    //return all articles
-    return db.any('SELECT * FROM articles');
+    return db.any('SELECT * FROM articles')
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-//setURLTitle ; /articles/new (post, create, insert)
-  setURLTitle(title, body, author){
-   title = article.title;
-   body = article.body;
-   author = article.author;
-   let encoded = encodeURI(article.title);
-   article.urlTitle = encoded;
+  create(article) {
+   let title = article.title;
+   let body = article.body;
+   let author = article.author;
+   let urlTitle = encodeURI(title);
 
    if (!title || !body || !author) {
      throw new Error('Invalid');
    }
 
-   return db.any('INSERT INTO products VALUES($1, $2, $3)', [title, body, author, encoded]);
+   return db.any('INSERT INTO articles (title, body, author, urlTitle) VALUES($1, $2, $3, $4)', [title, body, author, urlTitle])
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) =>{
+      console.log('ERROR :', error);
+    });
+
    }
+//getArticleByTitle /articles/:title (get, select)
+  getAllArticleByTitle() {
 
+  }
 
+//editArticle /articles/:title/edit (get, put(update), delete(delete))
+  editArticle() {
+
+  }
+//deleteArticle /articles/:title/edit (delete(delete))
+  deleteArticle() {
+
+  }
 }
 
 
-//getArticleByTitle /articles/:title (get, select)
-
-//editArticle /articles/:title/edit (get, put(update), delete(delete))
-
-//deleteArticle /articles/:title/edit (delete(delete))
-
-
-
-
-
 module.exports = new Articles();
+
+
+
+

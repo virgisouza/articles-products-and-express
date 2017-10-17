@@ -13,7 +13,7 @@ CREATE DATABASE articles_and_products_db OWNER articles_and_products_user;
 CREATE TABLE articles (
   id serial PRIMARY KEY,
   title varchar(90) NOT NULL,
-  body text NOT NULL,
+  body varchar(255) NULL,
   author varchar (90) NOT NULL,
   urlTitle varchar(255) NOT NULL
 );
