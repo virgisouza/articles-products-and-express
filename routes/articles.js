@@ -27,7 +27,7 @@ router.get('/:title', (req,res) => {
 
   return Articles.getArticleByTitle(title)
   .then((data) => {
-    res.render('./articles/:title', {oneArticle: data});
+    res.render('./articles/articles', {oneArticle: data});
   })
   .catch((err) => {
     console.log(err);
@@ -35,7 +35,16 @@ router.get('/:title', (req,res) => {
 });
 
 router.get('/:title/edit', (req,res) => {
-  res.render('.articles/:title/edit');
+  let title = req.params.title;
+
+  return Articles.getArticleByTitle(title)
+    .then((data)=> {
+      res.render('./articles/edit', {editArticle: data});
+    })
+    .catch((err)=> {
+      console.log(err);
+    });
+
 });
 
 router.post('/new', (req, res) => {
@@ -49,8 +58,29 @@ router.post('/new', (req, res) => {
   }
 });
 
-router.put('/:title', (req,res)=> {
+router.put('/:title/edit', (req,res)=> {
+  let title = req.params.title;
+  let body = req.body;
+  return Articles.editArticle(title, body)
+    .then((data) => {
+      res.redirect('/');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect('back');
+    });
+});
 
+router.delete('/:title/edit', (req, res) => {
+  let title = req.params.title;
+  console.log(title);
+  return Articles.deleteArticle(title)
+    .then((data) => {
+      res.render('./articles/:title/edit', {editArticle: data});
+    })
+    .catch((err)=> {
+      console.log(err);
+    });
 });
 
 

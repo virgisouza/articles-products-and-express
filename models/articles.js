@@ -32,27 +32,16 @@ class Articles {
    }
 
   getArticleByTitle(article) {
-   function search(nameKey, myArray){
-    for (var i=0; i < myArray.length; i++) {
-        if (myArray[i].title === nameKey) {
-            return myArray[i];
-          }
-        }
-      }
-    let data = this.getAllArticles();
-    console.log(data);
-    let result = search(article, data);
-    console.log(result);
-    return result;
+    return db.one('SELECT * FROM articles WHERE title = $1', article);
   }
 
-//editArticle /articles/:title/edit (get, put(update), delete(delete))
   editArticle(article) {
-
+    return db.none('UPDATE articles SET title=$1, body=$2, author=$3 WHERE title=$1',
+      [title, body, author]);
   }
-//deleteArticle /articles/:title/edit (delete(delete))
-  deleteArticle(article) {
 
+  deleteArticle(article) {
+    return db.result('DELETE FROM articles WHERE title=$1', article);
   }
 }
 
