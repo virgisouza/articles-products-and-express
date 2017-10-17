@@ -1,1 +1,19 @@
 {{!-- /products/:id --}}
+
+<h1>Display Specific Product/ :id</h1>
+
+<div class="collection">
+  <ul class='oneProduct'>
+
+      <br>
+      <li>Name : {{oneProduct.name}}</li>
+      <li>Price : {{oneProduct.price}}</li>
+      <li>Inventory : {{oneProduct.inventory}}</li>
+      <br>
+
+  </ul>
+</div>
+
+<a href="http://localhost:3000/products">List All Products></a>
+<br>
+{{>footer}}

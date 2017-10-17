@@ -1,1 +1,24 @@
 {{!-- /products --}}
+<h1>All Products List</h1>
+
+<div class="collection">
+  <ul class="products-list">
+    <br>
+    {{#each products}}
+    <li>Name : {{name}}</li>
+    <li>Price : {{price}}</li>
+    <li>Inventory : {{inventory}}</li>
+    <a href="http://localhost:3000/products/{{this.name}}/edit">Edit Item</a>
+    <br>
+    <br>
+    {{/each}}
+
+  </ul>
+</div>
+
+<a href="http://localhost:3000">Change Route</a>
+
+<a href="http://localhost:3000/products/new">Create New Product</a>
+
+<br>
+{{>footer}}

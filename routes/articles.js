@@ -60,6 +60,7 @@ router.post('/new', (req, res) => {
 router.put('/:title/edit', (req,res)=> {
   let title = req.params.title;
   let body = req.body;
+  console.log(body);
 
   return Articles.editArticle(title, body)
     .then((data) => {
