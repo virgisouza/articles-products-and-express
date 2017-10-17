@@ -7,7 +7,14 @@ const Articles = require('../models/articles');
 
 
 router.get('/', (req, res) => {
-  res.render('./articles/index', {articles : Articles.getAllArticles()});
+ return Articles.getAllArticles()
+ .then((data) => {
+    console.log(data);
+    res.render('./articles/index', {articles: data});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 router.get('/new', (req, res) => {
@@ -15,8 +22,16 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/:title', (req,res) => {
-  console.log(req.params.title);
-  res.render('./articles/:title');
+  let title = req.params.title;
+  console.log(title);
+
+  return Articles.getArticleByTitle(title)
+  .then((data) => {
+    res.render('./articles/:title', {oneArticle: data});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 router.get('/:title/edit', (req,res) => {
@@ -26,7 +41,15 @@ router.get('/:title/edit', (req,res) => {
 router.post('/new', (req, res) => {
   let data = req.body;
   Articles.create(data);
-    return res.render('./articles/new');
+
+  if(data === data) {
+    res.render('./articles/new');
+  }else{
+    res.redirect('back');
+  }
+});
+
+router.put('/:title', (req,res)=> {
 
 });
 

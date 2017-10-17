@@ -8,13 +8,7 @@ class Articles {
   }
 
   getAllArticles() {
-    return db.any('SELECT * FROM articles')
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return db.any('SELECT * FROM articles');
   }
 
   create(article) {
@@ -36,17 +30,28 @@ class Articles {
     });
 
    }
-//getArticleByTitle /articles/:title (get, select)
-  getAllArticleByTitle() {
 
+  getArticleByTitle(article) {
+   function search(nameKey, myArray){
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i].title === nameKey) {
+            return myArray[i];
+          }
+        }
+      }
+    let data = this.getAllArticles();
+    console.log(data);
+    let result = search(article, data);
+    console.log(result);
+    return result;
   }
 
 //editArticle /articles/:title/edit (get, put(update), delete(delete))
-  editArticle() {
+  editArticle(article) {
 
   }
 //deleteArticle /articles/:title/edit (delete(delete))
-  deleteArticle() {
+  deleteArticle(article) {
 
   }
 }
