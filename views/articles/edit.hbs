@@ -3,7 +3,7 @@
 
 <form action="/articles/{{editArticle.title}}/edit?_method=PUT" method= "post">
   Title : <input type='text' name='title' value= {{editArticle.title}}><br>
-  Body : <input type="text" name ='body' ><br>
+  Body : <textarea name="body" id="body" cols="30" rows="10">{{editArticle.body}}</textarea>
   Author : <input type="text" name= 'author' ><br>
   <input type="submit" value= 'Edit'><br>
 </form>

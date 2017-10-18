@@ -12,16 +12,17 @@ class Articles {
   }
 
   create(article) {
+   let image = article.image;
    let title = article.title;
    let body = article.body;
    let author = article.author;
    let urlTitle = encodeURI(title);
 
-   if (!title || !body || !author) {
+   if ( !title || !body || !author) {
      throw new Error('Invalid');
    }
 
-   return db.any('INSERT INTO articles (title, body, author, urlTitle) VALUES($1, $2, $3, $4)', [title, body, author, urlTitle])
+   return db.any('INSERT INTO articles (title, body, author, urlTitle, image) VALUES($1, $2, $3, $4, $5)', [title, body, author, urlTitle, image])
     .then((data) => {
       console.log(data);
     })
