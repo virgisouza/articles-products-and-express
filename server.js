@@ -5,7 +5,7 @@ const bodyparser = require('body-parser');
 const exphbs = require('express-handlebars');
 const app = express();
 app.engine('.hbs', exphbs({
-  defaultlayout : 'main',
+  defaultLayout : 'main',
   extname : '.hbs'
 }));
 
@@ -16,10 +16,10 @@ app.use(express.urlencoded());
 app.use(bodyparser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
-//app.use(express.static('public')); for css
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.render('./layouts/main');
+  res.render('./home');
 });
 
 let articles = require('./routes/articles');
