@@ -1,17 +1,17 @@
 {{!-- /products/:id/edit --}}
 <h1>Edit Products / PUT / Delete</h1>
 
-<form action="/articles/{{editArticle.title}}/edit?_method=PUT" method= "post">
-  Title : <input type='text' name='title' value= {{editArticle.title}}><br>
-  Body : <input type="text" name ='body' ><br>
-  Author : <input type="text" name= 'author' ><br>
+<form action="/products/{{editProduct.name}}/edit?_method=PUT" method= "post">
+  Name : <input type='text' name='name' value= {{editProduct.name}}><br>
+  Price : <input type="text" name ='price' ><br>
+  Inventory : <input type="text" name= 'inventory' ><br>
   <input type="submit" value= 'Edit'><br>
 </form>
-<form method="POST" action="/articles/{{editArticle.title}}/edit?_method=DELETE">
+<form method="POST" action="/products/{{editProduct.name}}/edit?_method=DELETE">
   <button type="submit">Delete</button>
 </form>
 
-<a href="http://localhost:3000/articles">List All Articles</a>
+<a href="http://localhost:3000/products">List All Products</a>
 
 <br>
 {{>footer}}

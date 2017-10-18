@@ -1,4 +1,5 @@
 //jshint esversion : 6
+
 let express = require('express');
 let router = express.Router();
 const Products = require('../models/products');
@@ -6,7 +7,7 @@ const Products = require('../models/products');
 router.get('/', (req, res) => {
  return Products.getAllProducts()
  .then((data) => {
-    res.render('./products/index', {products: data});
+    res.render('./productViews/indexPro', {products: data});
   })
   .catch((err) => {
     console.log(err);
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-  res.render('./products/new');
+  res.render('./productViews/newPro');
 });
 
 router.get('/:id', (req,res) => {
@@ -22,7 +23,7 @@ router.get('/:id', (req,res) => {
 
   return Products.getProductById(id)
   .then((data) => {
-    res.render('./products/products', {oneProduct: data});
+    res.render('./productViews/productsPro', {oneProduct: data});
   })
   .catch((err) => {
     console.log(err);
@@ -34,7 +35,7 @@ router.get('/:id/edit', (req,res) => {
 
   return Products.getProductById(id)
     .then((data)=> {
-      res.render('./products/edit', {editProduct: data});
+      res.render('./productViews/editPro', {editProduct: data});
     })
     .catch((err)=> {
       console.log(err);
@@ -47,7 +48,7 @@ router.post('/new', (req, res) => {
   Products.create(data);
 
   if(data === data) {
-    res.render('./products/new');
+    res.render('./productViews/newPro');
   }else{
     res.redirect('back');
   }

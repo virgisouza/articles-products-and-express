@@ -7,61 +7,39 @@ class Products {
 
   }
 
-  create(){
+  getAllProducts() {
+    return db.any('SELECT * FROM products');
+  }
+
+  create(product){
    let name = product.name;
-   let price = product.price;
-   let inventory = product.inventory;
+   let price = product.price * 1;
+   let inventory = parseInt(product.inventory);
 
    if (!name || !price || !inventory) {
      throw new Error('Invalid');
    }
 
-   return db.any('INSERT INTO products VALUES($1, $2, $3)', [name, price, inventory]);
+   return db.any('INSERT INTO products (name, price, inventory) VALUES($1, $2, $3)', [name, price, inventory]);
   }
 
 
-//   getAllArticles() {
-//     return db.any('SELECT * FROM articles');
-//   }
+  getProductById(product) {
+    return db.one('SELECT * FROM products WHERE name= $1', product);
+  }
 
-//   create(article) {
-//    let title = article.title;
-//    let body = article.body;
-//    let author = article.author;
-//    let urlTitle = encodeURI(title);
+  editProduct(id, obj) {
+    let name = obj.name;
+    let price = obj.price;
+    let inventory = obj.inventory;
 
-//    if (!title || !body || !author) {
-//      throw new Error('Invalid');
-//    }
+    return db.none('UPDATE products SET name=$1, price=$2, inventory=$3 WHERE name=$4',
+      [name, price, inventory, id]);
+  }
 
-//    return db.any('INSERT INTO articles (title, body, author, urlTitle) VALUES($1, $2, $3, $4)', [title, body, author, urlTitle])
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch((error) =>{
-//       console.log('ERROR :', error);
-//     });
-
-//    }
-
-//   getArticleByTitle(article) {
-//     return db.one('SELECT * FROM articles WHERE title = $1', article);
-//   }
-
-//   editArticle(article, obj) {
-//     let title = obj.title;
-//     let body = obj.body;
-//     let author = obj.author;
-//     let urltitle = encodeURI(obj.title);
-
-//     return db.none('UPDATE articles SET title=$1, body=$2, author=$3, urltitle=$4 WHERE title=$5',
-//       [title, body, author, urltitle, article]);
-//   }
-
-//   deleteArticle(article) {
-//     return db.result('DELETE FROM articles WHERE title=$1', article);
-//   }
-// }
+  deleteProduct(product) {
+    return db.result('DELETE FROM products WHERE name=$1', product);
+  }
 
 }
 

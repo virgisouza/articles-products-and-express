@@ -4,11 +4,9 @@ let express = require('express');
 let router = express.Router();
 const Articles = require('../models/articles');
 
-
 router.get('/', (req, res) => {
  return Articles.getAllArticles()
  .then((data) => {
-    // console.log(data);
     res.render('./articles/index', {articles: data});
   })
   .catch((err) => {
