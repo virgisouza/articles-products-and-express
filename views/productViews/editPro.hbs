@@ -1,0 +1,23 @@
+{{!-- /products/:id/edit --}}
+<link rel="stylesheet" href="styles.css">
+<h1>Products Home Page / PUT / edit product</h1>
+
+<form action="/products/{{editProduct.name}}/edit?_method=PUT" method= "post">
+  Name : <input type='text' name='name' value= {{editProduct.name}}><br>
+  Price : <input type="text" name ='price' ><br>
+  Inventory : <input type="text" name= 'inventory'><br>
+  <input type="submit" value= 'Edit'><br>
+</form>
+<form method="POST" action="/products/{{editProduct.name}}/edit?_method=DELETE">
+  <button type="submit">Delete</button>
+</form>
+
+
+<a href="http://localhost:3000/products">List All Products</a>
+
+
+
+<br>
+<br>
+
+{{>footer}}

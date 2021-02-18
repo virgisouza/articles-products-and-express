@@ -1,0 +1,26 @@
+{{!-- /products --}}
+<link rel="stylesheet" href="styles.css">
+<h1>Display All Products </h1>
+{{!-- handlebar comments, not visible in the inspector --}}
+<div class="collection">
+  <ul class='product-list'>
+    {{#each products}}
+      <br>
+      <li>Id# : {{id}}</li>
+      <li>Name : {{name}}</li>
+      <li>Price : {{price}}</li>
+      <li>Inventory : {{inventory}}</li>
+      <a href="http://localhost:3000/products/{{this.name}}/edit">Edit Item</a>
+      <br>
+    {{/each}}
+  </ul>
+</div>
+
+<a href="http://localhost:3000/products/new">Create New Product</a><br>
+<a href="http://localhost:3000/">Home</a>
+
+<!--this comment is visible in the inspector -->
+<br>
+<br>
+
+{{>footer}}

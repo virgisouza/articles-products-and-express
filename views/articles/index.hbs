@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="styles.css">
+<h1>All Articles List </h1>
+
+<div class="collection">
+  <ul class='product-list'>
+    {{#each articles}}
+      <br>
+      <li>Title : {{title}}</li>
+      <li>Body : {{body}}</li>
+      <li>Author : {{author}}</li>
+      <li>URL Title : {{urlTitle}}</li>
+      <a href="http://localhost:3000/articles/{{this.title}}/edit">Edit Item</a>
+      <br>
+    {{/each}}
+  </ul>
+</div>
+
+<a href="http://localhost:3000/articles/new">Create New Article</a><br>
+<a href="http://localhost:3000/">Home</a>
+<br>
+{{>footer}}
